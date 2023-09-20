@@ -18,10 +18,6 @@ namespace BRK.Managers
     {
         public static GameStates CurrentState;
         private int m_currentScore = 0;
-        private void Awake()
-        {
-            ChangeState(GameStates.Setup);
-        }
 
         private void OnEnable()
         {
@@ -33,6 +29,12 @@ namespace BRK.Managers
             EventBusManager.OnBallHitBrick -= AddScore;
         }
 
+        private void Start()
+        {
+            SetScore(0);
+            ChangeState(GameStates.Setup);
+        }
+
         private void ChangeState(GameStates newState)
         {
             CurrentState = newState;
@@ -41,7 +43,12 @@ namespace BRK.Managers
 
         private void AddScore(GameObject brick)
         {
-            m_currentScore++;
+            SetScore(m_currentScore + 1);
+        }
+
+        private void SetScore(int score)
+        {
+            m_currentScore = score;
             EventBusManager.RaiseChangeScore(m_currentScore);
         }
     }

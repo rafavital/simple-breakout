@@ -26,7 +26,6 @@ namespace BRK.Gameplay.Brick
         {
             if (brick != gameObject)
             {
-                print("Not me");
                 return;
             }
 
