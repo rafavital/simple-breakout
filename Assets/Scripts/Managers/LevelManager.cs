@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
                         (m_brickSize.y + m_padding.y) * j
                     );
 
-                Instantiate(m_brickPrefab, brickPosition, Quaternion.identity);
+                Instantiate(m_brickPrefab, brickPosition, Quaternion.identity, transform);
             }
         }
     }

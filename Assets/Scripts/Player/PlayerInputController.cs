@@ -8,11 +8,13 @@ namespace BRK.Gameplay.Player
     public class PlayerInputController : MonoBehaviour
     {
         const string HORIZONTAL_AXIS = "Horizontal";
+        const KeyCode RELEASE_KEY = KeyCode.Space;
 
         private float m_horizontalInput;
 
         void Update()
         {
+            CheckReleaseKey();
             CheckHorizontalInput();
         }
 
@@ -20,6 +22,14 @@ namespace BRK.Gameplay.Player
         {
             m_horizontalInput = Input.GetAxis(HORIZONTAL_AXIS);
             EventBusManager.RaisePlayerHorizontalInput(m_horizontalInput);
+        }
+
+        private void CheckReleaseKey()
+        {
+            if (Input.GetKeyDown(RELEASE_KEY))
+            {
+                EventBusManager.RaiseReleaseBall();
+            }
         }
     }
 }

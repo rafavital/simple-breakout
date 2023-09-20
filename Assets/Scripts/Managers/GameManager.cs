@@ -31,8 +31,7 @@ namespace BRK.Managers
 
         private void Start()
         {
-            SetScore(0);
-            ChangeState(GameStates.Setup);
+            ResetStage();
         }
 
         private void ChangeState(GameStates newState)
@@ -50,6 +49,12 @@ namespace BRK.Managers
         {
             m_currentScore = score;
             EventBusManager.RaiseChangeScore(m_currentScore);
+        }
+
+        private void ResetStage()
+        {
+            SetScore(0);
+            EventBusManager.ResetStage();
         }
     }
 }
