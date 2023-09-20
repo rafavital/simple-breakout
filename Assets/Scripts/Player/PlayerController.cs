@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BRK.Events;
 
-namespace BRK.Player
+namespace BRK.Gameplay.Player
 {
     public class PlayerController : MonoBehaviour
     {
