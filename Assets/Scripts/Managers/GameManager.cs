@@ -1,43 +1,33 @@
+using BRK.Events;
+using UnityEngine;
+using BRK.Utilities;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using BRK.Events;
-using BRK.Utilities;
 
 namespace BRK.Managers
 {
-    public enum GameStates
-    {
-        Setup = 0,
-        Playing,
-        Paused,
-        GameOver,
-        Victory
-    }
     public class GameManager : Singleton<GameManager>
     {
-        public static GameStates CurrentState;
         private int m_currentScore = 0;
+        private bool m_canRestart = false;
 
         private void OnEnable()
         {
             EventBusManager.OnBallHitBrick += AddScore;
+            EventBusManager.OnVictory += EndGame;
+            EventBusManager.OnPressRestart += TryRestart;
         }
 
         private void OnDisable()
         {
             EventBusManager.OnBallHitBrick -= AddScore;
+            EventBusManager.OnVictory -= EndGame;
+            EventBusManager.OnPressRestart -= TryRestart;
         }
 
         private void Start()
         {
             ResetStage();
-        }
-
-        private void ChangeState(GameStates newState)
-        {
-            CurrentState = newState;
-            EventBusManager.RaiseGameStateChanged((int)newState);
         }
 
         private void AddScore(GameObject brick)
@@ -53,8 +43,22 @@ namespace BRK.Managers
 
         private void ResetStage()
         {
+            m_canRestart = false;
             SetScore(0);
             EventBusManager.ResetStage();
+        }
+
+        private void EndGame()
+        {
+            m_canRestart = true;
+        }
+
+        private void TryRestart()
+        {
+            if (m_canRestart)
+            {
+                Application.LoadLevel(Application.loadedLevel);
+            }
         }
     }
 }

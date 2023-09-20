@@ -9,6 +9,7 @@ namespace BRK.Gameplay.Player
     {
         const string HORIZONTAL_AXIS = "Horizontal";
         const KeyCode RELEASE_KEY = KeyCode.Space;
+        const KeyCode RESTART_KEY = KeyCode.R;
 
         private float m_horizontalInput;
 
@@ -16,6 +17,7 @@ namespace BRK.Gameplay.Player
         {
             CheckReleaseKey();
             CheckHorizontalInput();
+            CheckRestartKey();
         }
 
         private void CheckHorizontalInput()
@@ -29,6 +31,13 @@ namespace BRK.Gameplay.Player
             if (Input.GetKeyDown(RELEASE_KEY))
             {
                 EventBusManager.RaiseReleaseBall();
+            }
+        }
+        private void CheckRestartKey()
+        {
+            if (Input.GetKeyDown(RESTART_KEY))
+            {
+                EventBusManager.RaiseRestartKey();
             }
         }
     }

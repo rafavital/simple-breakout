@@ -11,6 +11,7 @@ namespace BRK.Events
         public static UnityAction OnVictory;
         public static UnityAction OnBallOutOfBounds;
         public static UnityAction OnReleaseBall;
+        public static UnityAction OnPressRestart;
         public static UnityAction<int> OnChangeScore;
         public static UnityAction<int> OnGameStateChanged;
         public static UnityAction<float> OnPlayerHorizontalInput;
@@ -25,5 +26,6 @@ namespace BRK.Events
         public static void RaiseChangeScore(int score) => OnChangeScore?.Invoke(score);
         public static void RaiseReleaseBall() => OnReleaseBall?.Invoke();
         public static void ResetStage() => OnResetStage?.Invoke();
+        public static void RaiseRestartKey() => OnPressRestart?.Invoke();
     }
 }

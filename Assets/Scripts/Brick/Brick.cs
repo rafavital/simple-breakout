@@ -36,6 +36,7 @@ namespace BRK.Gameplay.Brick
         {
             if (AllBricks.Count == 0)
             {
+                Debug.Log("Victory!");
                 EventBusManager.RaiseVictory();
             }
         }
