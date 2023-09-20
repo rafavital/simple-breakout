@@ -11,7 +11,7 @@ namespace BRK.Gameplay.Ball
         {
             if (other.gameObject.CompareTag("Brick"))
             {
-                EventBusManager.RaiseBallHitBrick();
+                EventBusManager.RaiseBallHitBrick(other.gameObject);
             }
         }
     }
