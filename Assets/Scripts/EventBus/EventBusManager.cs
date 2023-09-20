@@ -1,18 +1,14 @@
+using UnityEngine;
+using BRK.Utilities;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class EventBusManager : MonoBehaviour
+namespace BRK.Events
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class EventBusManager
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static UnityAction<float> OnPlayerHorizontalInput;
+        public static void RaisePlayerHorizontalInput(float value) => OnPlayerHorizontalInput?.Invoke(value);
     }
 }

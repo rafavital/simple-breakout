@@ -1,18 +1,25 @@
+using BRK.Events;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class PlayerInputController : MonoBehaviour
+namespace BRK.Player
 {
-    [SerializeField] private string m_horizontalAxis;
-
-
-
-    private float m_horizontalInput;
-
-    // Update is called once per frame
-    void Update()
+    public class PlayerInputController : MonoBehaviour
     {
-        m_horizontalInput = Input.GetAxis(m_horizontalAxis);
+        const string HORIZONTAL_AXIS = "Horizontal";
+
+        private float m_horizontalInput;
+
+        void Update()
+        {
+            CheckHorizontalInput();
+        }
+
+        private void CheckHorizontalInput()
+        {
+            m_horizontalInput = Input.GetAxis(HORIZONTAL_AXIS);
+            EventBusManager.RaisePlayerHorizontalInput(m_horizontalInput);
+        }
     }
 }
