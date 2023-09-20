@@ -27,14 +27,8 @@ namespace BRK.UI
             m_canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        private void Hide()
-        {
-            m_canvasGroup.alpha = 0;
-        }
+        private void Hide() => m_canvasGroup.alpha = 0;
 
-        private void Show()
-        {
-            m_canvasGroup.alpha = 1;
-        }
+        private void Show() => m_canvasGroup.alpha = 1;
     }
 }

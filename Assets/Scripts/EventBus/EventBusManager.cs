@@ -9,10 +9,12 @@ namespace BRK.Events
     public static class EventBusManager
     {
         public static UnityAction OnVictory;
+        public static UnityAction OnDefeat;
         public static UnityAction OnBallOutOfBounds;
         public static UnityAction OnReleaseBall;
         public static UnityAction OnPressRestart;
         public static UnityAction<int> OnChangeScore;
+        public static UnityAction<int> OnChangeLives;
         public static UnityAction<int> OnGameStateChanged;
         public static UnityAction<float> OnPlayerHorizontalInput;
         public static UnityAction<GameObject> OnBallHitBrick;
@@ -27,5 +29,7 @@ namespace BRK.Events
         public static void RaiseReleaseBall() => OnReleaseBall?.Invoke();
         public static void ResetStage() => OnResetStage?.Invoke();
         public static void RaiseRestartKey() => OnPressRestart?.Invoke();
+        public static void RaiseChangeLives(int lives) => OnChangeLives?.Invoke(lives);
+        public static void RaiseDefeat() => OnDefeat?.Invoke();
     }
 }
